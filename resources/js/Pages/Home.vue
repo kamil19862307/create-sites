@@ -1,17 +1,25 @@
 <script setup>
-import { Head } from '@inertiajs/vue3'
 
-defineProps({
-    title: String,
-    message: String,
-})
+import PublicLayout from '@/Layouts/PublicLayout.vue'
+import HeroSection from '@/Components/Hero/HeroSection.vue'
+import StackSection from '@/Components/Stack/StackSection.vue'
+import ProcessSection from '@/Components/Process/ProcessSection.vue'
+import AboutSection from '@/Components/About/AboutSection.vue'
+import PortfolioSection from '@/Components/Portfolio/PortfolioSection.vue'
+import TestimonialsSection from '@/Components/Testimonials/TestimonialsSection.vue'
+import ContactSection from '@/Components/Contact/ContactSection.vue'
+
+
 </script>
+
 <template>
-    <Head :title="title" />
-
-    <main>
-        <h1>КМ — Разработка сайтов</h1>
-
-        <p>{{ message }}</p>
-    </main>
+    <PublicLayout>
+        <HeroSection />
+        <StackSection />
+        <ProcessSection />
+        <AboutSection />
+        <PortfolioSection />
+        <TestimonialsSection />
+        <ContactSection />
+    </PublicLayout>
 </template>
