@@ -1,11 +1,117 @@
-@import 'tailwindcss';
-
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
+@import "tailwindcss";
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-display: "Jost", ui-sans-serif, system-ui, sans-serif;
+    --font-sans: "Onest", ui-sans-serif, system-ui, sans-serif;
+
+    --color-ink: #1d2a2f;
+    --color-muted: #5f6f75;
+    --color-line: #e2eaec;
+    --color-mist: #f3f8f8;
+    --color-mint-200: #c9f6ea;
+    --color-mint-300: #9cf0d9;
+    --color-mint-400: #6fe3c3;
+    --color-mint-700: #177a65;
+}
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+    body {
+        font-family: var(--font-sans);
+        color: var(--color-ink);
+        background: #fff;
+        -webkit-font-smoothing: antialiased;
+    }
+    :focus-visible {
+        outline: 2px solid var(--color-mint-700);
+        outline-offset: 3px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+    }
+}
+
+@layer components {
+    .section-title {
+        font-family: var(--font-display);
+        font-weight: 300;
+        font-size: 1.875rem;
+        letter-spacing: 0.02em;
+        line-height: 1.2;
+    }
+
+    /* Матовое «стекло» — основной приём из макета */
+    .glass {
+        background: rgb(255 255 255 / 0.7);
+        border: 1px solid rgb(255 255 255 / 0.9);
+        box-shadow:
+            0 1px 0 rgb(255 255 255 / 0.9) inset,
+            0 10px 30px -12px rgb(40 70 80 / 0.18);
+        backdrop-filter: blur(10px);
+    }
+
+    .btn-mint {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.75rem 1.75rem;
+        border-radius: 0.75rem;
+        border: 1px solid var(--color-mint-400);
+        background: var(--color-mint-300);
+        color: var(--color-ink);
+        font-weight: 500;
+        box-shadow:
+            0 0 0 4px rgb(111 227 195 / 0.18),
+            0 8px 24px rgb(111 227 195 / 0.45);
+        transition: box-shadow 0.2s, background-color 0.2s;
+    }
+    .btn-mint:hover {
+        background: var(--color-mint-200);
+        box-shadow:
+            0 0 0 6px rgb(111 227 195 / 0.25),
+            0 10px 30px rgb(111 227 195 / 0.55);
+    }
+
+    .btn-ghost {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.625rem 1.5rem;
+        border-radius: 0.75rem;
+        border: 1px solid #cfdadd;
+        background: rgb(255 255 255 / 0.6);
+        font-weight: 500;
+        transition: border-color 0.2s, background-color 0.2s;
+    }
+    .btn-ghost:hover {
+        border-color: var(--color-mint-400);
+        background: var(--color-mint-200);
+    }
+
+    .field {
+        width: 100%;
+        border-radius: 0.5rem;
+        border: 1px solid #cfdadd;
+        background: #fff;
+        padding: 0.75rem 1rem;
+        transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .field:focus {
+        outline: none;
+        border-color: var(--color-mint-400);
+        box-shadow: 0 0 0 4px rgb(111 227 195 / 0.25);
+    }
+}
+
+/* Единственное «живое» движение: мягкое дыхание света в баннере */
+@media (prefers-reduced-motion: no-preference) {
+    .hero-glow {
+        animation: hero-breathe 7s ease-in-out infinite alternate;
+    }
+    @keyframes hero-breathe {
+        from { opacity: 0.65; }
+        to { opacity: 1; }
+    }
 }

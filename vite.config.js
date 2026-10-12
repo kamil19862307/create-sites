@@ -17,7 +17,14 @@ export default defineConfig({
             ],
         }),
         inertia(),
-        vue(),
+        vue({
+            template: {
+                transformAssetUrls: {
+                    base: null,
+                    includeAbsolute: false,
+                },
+            },
+        }),
         tailwindcss(),
     ],
     server: {
