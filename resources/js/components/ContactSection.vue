@@ -29,12 +29,12 @@ async function submit() {
 
 <template>
     <section id="contact" class="scroll-mt-20">
-        <h2 class="section-title">Контакты</h2>
+        <h2 class="section-title">Работаю с вами напрямую:</h2>
 
-        <div class="mt-8 grid gap-10 lg:grid-cols-2 lg:gap-20">
+        <div class="mt-8 grid gap-10">
             <div>
                 <p class="max-w-sm leading-relaxed text-muted">
-                    Опишите задачу в форме или напишите напрямую, отвечу на email или по телефону.
+                    Опишите задачу в форме или в письме, отвечу на email или по телефону.
                 </p>
                 <ul class="mt-6 space-y-3">
                     <li>

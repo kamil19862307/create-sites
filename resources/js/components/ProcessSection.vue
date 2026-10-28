@@ -1,10 +1,10 @@
 <script setup>
 const steps = [
-    { title: 'Обсуждение задачи', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-    { title: 'Проектирование', text: 'Sed do eiusmod tempor incididunt ut labore et dolore.' },
-    { title: 'Разработка', text: 'Ut enim ad minim veniam, quis nostrud exercitation.' },
-    { title: 'Тестирование', text: 'Duis aute irure dolor in reprehenderit in voluptate.' },
-    { title: 'Запуск и поддержка', text: 'Excepteur sint occaecat cupidatat non proident.' },
+    { title: 'Обсуждение задачи', text: 'Узнаём задачу, аудиторию и цель сайта. Фиксируем объём и ожидания.' },
+    { title: 'Проектирование', text: 'Собираем структуру страниц и визуальное решение до начала вёрстки.' },
+    { title: 'Разработка', text: 'Пишем код, подключаем логику, делаем панель сайтом' },
+    { title: 'Тестирование и контент', text: 'Проверяем на разных устройствах и наполняем сайт нужным контентом' },
+    { title: 'Запуск и поддержка', text: 'Покупаем хостинг, доменное имя и выпускаем сайт в мир' },
 ];
 </script>
 
