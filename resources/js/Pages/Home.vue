@@ -13,6 +13,10 @@ import SiteFooter from '../components/SiteFooter.vue';
 defineProps({
     title: String,
     message: String,
+    testimonials: {
+        type: Array,
+        default: () => [],
+    },
 });
 </script>
 
@@ -40,7 +44,7 @@ defineProps({
 
         <div class="border-t border-line">
             <div class="mx-auto grid max-w-6xl gap-16 px-5 py-16 sm:px-8 lg:grid-cols-2 lg:gap-20 lg:py-24">
-                <ReviewsSection />
+                <ReviewsSection :reviews="testimonials" />
                 <ContactSection />
             </div>
         </div>

@@ -1,6 +1,9 @@
 <script setup>
-import { site } from '../data/site';
 import AboutSection from './AboutSection.vue';
+import { usePage } from '@inertiajs/vue3';
+
+const page = usePage();
+const settings = page.props.settings;
 </script>
 
 <template>
@@ -15,9 +18,12 @@ import AboutSection from './AboutSection.vue';
 
         <div class="relative mx-auto flex min-h-[400px] max-w-6xl flex-col justify-center px-5 py-16 sm:px-8 lg:min-h-[500px] lg:py-20">
             <h1 class="font-display text-5xl font-light tracking-wide sm:text-6xl lg:text-7xl">
-                Разработка сайтов
+                {{ settings?.hero_title }}
             </h1>
-            <p class="mt-4 font-display text-xl tracking-wide text-muted sm:text-2xl">{{ site.role }}</p>
+
+            <p class="mt-4 font-display text-xl tracking-wide text-muted sm:text-2xl">
+                {{ settings?.hero_description }}
+            </p>
 
             <div class="mt-10 max-w-xl">
                 <AboutSection />
