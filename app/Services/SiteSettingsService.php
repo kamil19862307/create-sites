@@ -10,7 +10,19 @@ class SiteSettingsService
     public function get(): ?array
     {
         return Cache::rememberForever('site_settings', function () {
-            return SiteSetting::first()?->toArray();
+            $settings = SiteSetting::first();
+
+            if (!$settings) {
+                return null;
+            }
+
+            $data = $settings->toArray();
+
+            $data['about_photo_url'] = $settings->about_photo
+                ? asset('storage/' . $settings->about_photo)
+                : null;
+
+            return $data;
         });
     }
 }

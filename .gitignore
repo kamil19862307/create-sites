@@ -24,7 +24,9 @@ ToDoList.odt
 /auth.json
 /node_modules
 /public/fonts-manifest.dev.json
+/public/fonts/filament
 /public/hot
+/public/js/filament
 /public/storage
 /storage/*.key
 /storage/pail
@@ -34,3 +36,5 @@ Homestead.json
 Homestead.yaml
 Thumbs.db
 public_html
+
+/public/css/filament

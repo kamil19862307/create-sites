@@ -1,5 +1,8 @@
 <script setup>
-import { site } from "../data/site.js";
+import { usePage } from '@inertiajs/vue3';
+
+const page = usePage();
+const settings = page.props.settings;
 </script>
 
 <template>
@@ -11,15 +14,16 @@ import { site } from "../data/site.js";
                 aria-label="Место для портрета"
             >
                 <img
-                    src="/images/kamil.webp"
-                    alt="Камиль Музафаров"
+                    v-if="settings?.about_photo_url"
+                    :src="settings.about_photo_url"
+                    alt="Специалист по созданию сайтов"
                     class="h-50 w-46 shrink-0 rounded-3xl object-cover"
                 >
             </div>
 
             <div class="max-w-md leading-relaxed text-muted">
-                <p>
-                    Меня зовут Камиль Музафаров. Я делаю сайты для людей и бизнеса: от лендинга до веб-приложения.
+                <p class="whitespace-pre-line">
+                    {{ settings?.about_description }}
                 </p>
 
                 <p class="mt-4 font-display text-xl tracking-wide sm:text-2xl">
@@ -27,7 +31,7 @@ import { site } from "../data/site.js";
                 </p>
 
                 <p class="mt-2">
-                    Беру проект целиком: от идеи и структуры до готового сайта, который можно развивать.
+                    Беру проект целиком: от идеи и структуры до готового сайта, который можно развивать
                 </p>
             </div>
         </div>
