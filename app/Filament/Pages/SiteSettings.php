@@ -53,7 +53,7 @@ class SiteSettings extends Page implements HasSchemas
                             ->label('Фотография')
                             ->image()
                             ->disk('public')
-                            ->directory('public/images')
+                            ->directory('images')
                             ->visibility('public')
                     ]),
 

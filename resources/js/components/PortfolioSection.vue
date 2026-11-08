@@ -1,15 +1,12 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
 
-// image: путь к скриншоту, например '/images/project-1.jpg'. Пока null — показывается заглушка.
-const projects = [
-    { title: 'Проект 1', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', image: null, href: '#' },
-    { title: 'Проект 2', text: 'Sed do eiusmod tempor incididunt ut labore et dolore.', image: null, href: '#' },
-    { title: 'Проект 3', text: 'Ut enim ad minim veniam, quis nostrud exercitation.', image: null, href: '#' },
-    { title: 'Проект 4', text: 'Duis aute irure dolor in reprehenderit in voluptate.', image: null, href: '#' },
-    { title: 'Проект 5', text: 'Excepteur sint occaecat cupidatat non proident.', image: null, href: '#' },
-    { title: 'Проект 6', text: 'Sunt in culpa qui officia deserunt mollit anim.', image: null, href: '#' },
-];
+const props = defineProps({
+    projects: {
+        type: Array,
+        default: () => [],
+    },
+});
 
 const GAP = 20; // должен совпадать с gap-5 (1.25rem) в шаблоне
 const track = ref(null);
@@ -76,7 +73,7 @@ onUnmounted(() => observer?.disconnect());
             aria-label="Проекты"
             @scroll.passive="update"
         >
-            <li v-for="(p, i) in projects" :key="i" class="w-full shrink-0 snap-start sm:w-[calc(50%-0.625rem)]">
+            <li v-for="p in props.projects" :key="p.id" class="w-full shrink-0 snap-start sm:w-[calc(50%-0.625rem)]">
                 <a :href="p.href" class="group block">
                     <div class="glass aspect-[16/11] overflow-hidden rounded-2xl">
                         <img v-if="p.image" :src="p.image" :alt="p.title" class="h-full w-full object-cover" />
