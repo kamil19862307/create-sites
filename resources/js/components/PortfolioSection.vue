@@ -1,11 +1,10 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
+import { Link } from '@inertiajs/vue3';
 
-const props = defineProps({
-    projects: {
-        type: Array,
-        default: () => [],
-    },
+// projects приходят с сервера: { id, title, slug, short_description, cover_image } (см. PortfolioProject::toCard)
+defineProps({
+    projects: { type: Array, default: () => [] },
 });
 
 const GAP = 20; // должен совпадать с gap-5 (1.25rem) в шаблоне
@@ -24,7 +23,7 @@ function scrollByPage(dir) {
     const el = track.value;
     if (!el) return;
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    el.scrollBy({ left: dir * (el.firstElementChild.offsetWidth + GAP), behavior: reduce ? 'auto' : 'smooth' });
+    el.scrollBy({ left: dir * (el.clientWidth + GAP), behavior: reduce ? 'auto' : 'smooth' });
 }
 
 let observer;
@@ -73,10 +72,10 @@ onUnmounted(() => observer?.disconnect());
             aria-label="Проекты"
             @scroll.passive="update"
         >
-            <li v-for="p in props.projects" :key="p.id" class="w-full shrink-0 snap-start sm:w-[calc(50%-0.625rem)]">
-                <a :href="p.href" class="group block">
+            <li v-for="p in projects" :key="p.slug" class="w-full shrink-0 snap-start sm:w-[calc(50%-0.625rem)]">
+                <Link :href="`/portfolio/${p.slug}`" class="group block">
                     <div class="glass aspect-[16/11] overflow-hidden rounded-2xl">
-                        <img v-if="p.image" :src="p.image" :alt="p.title" class="h-full w-full object-cover" />
+                        <img v-if="p.cover_image" :src="p.cover_image" :alt="p.title" class="h-full w-full object-cover" />
                         <div v-else class="flex h-full items-center justify-center text-mint-700/70" aria-hidden="true">
                             <svg viewBox="0 0 24 24" class="h-14 w-14" fill="none" stroke="currentColor" stroke-width="1">
                                 <rect x="3" y="4" width="18" height="14" rx="2" />
@@ -85,8 +84,8 @@ onUnmounted(() => observer?.disconnect());
                         </div>
                     </div>
                     <h3 class="mt-4 font-display text-xl group-hover:text-mint-700">{{ p.title }}</h3>
-                    <p class="mt-1 leading-snug text-muted">{{ p.text }}</p>
-                </a>
+                    <p class="mt-1 line-clamp-2 leading-snug text-muted">{{ p.short_description }}</p>
+                </Link>
             </li>
         </ul>
     </section>

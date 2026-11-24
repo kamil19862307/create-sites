@@ -3,7 +3,9 @@
 namespace App\Filament\Resources\PortfolioProjects\Schemas;
 
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -58,6 +60,42 @@ class PortfolioProjectForm
                             ->disk('public')
                             ->directory('portfolio')
                             ->visibility('public'),
+
+                        Repeater::make('images')
+                            ->label('Галерея проекта')
+                            ->relationship()
+                            ->schema([
+                                FileUpload::make('image_path')
+                                    ->label('Изображение')
+                                    ->image()
+                                    ->disk('public')
+                                    ->directory('portfolio/gallery')
+                                    ->visibility('public')
+                                    ->required(),
+
+                                Select::make('image_type')
+                                    ->label('Тип изображения')
+                                    ->options([
+                                        'desktop' => 'Десктопная версия',
+                                        'mobile' => 'Мобильная версия',
+                                        'photo' => 'Фотография проекта',
+                                        'other' => 'Другое',
+                                    ])
+                                    ->default('desktop')
+                                    ->required(),
+                            ])
+                            ->orderColumn('sort_order')
+                            ->reorderable()
+                            ->collapsible()
+                            ->itemLabel(fn (array $state): ?string => match ($state['image_type'] ?? null) {
+                                'desktop' => 'Десктопная версия',
+                                'mobile' => 'Мобильная версия',
+                                'photo' => 'Фотография проекта',
+                                'other' => 'Другое',
+                                default => 'Изображение',
+                            })
+                            ->addActionLabel('Добавить изображение')
+                            ->columnSpanFull(),
 
                         TagsInput::make('technologies')
                             ->label('Технологии')
